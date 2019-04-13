@@ -38,13 +38,14 @@ body {
   top: 40px;
   left: 40px;
   padding: 20px;
+  width: 95%;
   max-width: 100%;
 }
 
 .benefits-list td {
   padding: 20px;
   width: 50%;
-  max-width: 500px;
+  max-width: 600px;
 }
 
 .demo-card__primary-action {
