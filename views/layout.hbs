@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-	components-web.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <script src="/javascripts/selectize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/selectize.css" />
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  </head>
+
+  <body>
+
+    <header class="mdc-top-app-bar mdc-top-app-bar--dense">
+      <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+          <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+          <span class="mdc-top-app-bar__title">{{title}}</span>
+        </section>
+      </div>
+    </header>
+
+    <aside class="mdc-drawer mdc-drawer--modal">
+      <div class="mdc-drawer__header">
+        <h3 class="mdc-drawer__title">Details</h3>
+        <h6 class="mdc-drawer__subtitle">Value Your Vote</h6>
+      </div>
+      <div class="mdc-drawer__content">
+        <ul class="details-list">
+          <li>
+            <div id="age-select" class="mdc-select">
+              <i class="mdc-select__dropdown-icon"></i>
+              <select class="mdc-select__native-control">
+                <option value="" disabled selected></option>
+                <option class="children" value="children">
+                  Children
+                </option>
+                <option class="youth" value="youth">
+                  Youth
+                </option>
+                <option class="senior-citizen" value="senior-citizen">
+                  Senior Citizen
+                </option>
+              </select>
+              <label class="mdc-floating-label">Age Group</label>
+              <div class="mdc-line-ripple"></div>
+            </div>
+          </li>
+
+          <li>
+            <div id="gender-select" class="mdc-select">
+              <i class="mdc-select__dropdown-icon"></i>
+              <select class="mdc-select__native-control">
+                <option value="" disabled selected></option>
+                <option class="male" value="male">
+                  Men
+                </option>
+                <option class="female" value="female">
+                  Women
+                </option>
+                <option class="transgender" value="transgender">
+                  Transgender
+                </option>
+              </select>
+              <label class="mdc-floating-label">Gender</label>
+              <div class="mdc-line-ripple"></div>
+            </div>
+          </li>
+
+          <li>
+            <div id="income-group-select" class="mdc-select">
+              <i class="mdc-select__dropdown-icon"></i>
+              <select class="mdc-select__native-control">
+                <option value="" disabled selected></option>
+                <option class="income-group-lower" value="income-group-lower">
+                  Lower Income
+                </option>
+                <option class="income-group-middle" value="income-group-middle">
+                  Middle Income
+                </option>
+                <option class="income-group-upper" value="income-group-upper">
+                  Higher Income
+                </option>
+              </select>
+              <label class="mdc-floating-label">Income Group</label>
+              <div class="mdc-line-ripple"></div>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+    <div class="mdc-drawer-scrim"></div>
+    <div></div>
+
+    <table class="benefits-list">
+    <tr>
+      <td id="BJP-benefits-list">
+        <div class="mdc-card demo-card demo-ui-control">
+          <div class="mdc-card__primary-action demo-card__primary-action" tabindex="0">
+            <div class="mdc-card__media mdc-card__media demo-card__media" style="background-image: url(&quot;https://upload.wikimedia.org/wikipedia/en/thumb/1/1e/Bharatiya_Janata_Party_logo.svg/1200px-Bharatiya_Janata_Party_logo.svg.png&quot;);"></div>
+            <div class="demo-card__primary">
+              <h2 class="demo-card__title mdc-typography mdc-typography--headline6">Bharatiya Janata Party</h2>
+              <h3 class="demo-card__subtitle mdc-typography mdc-typography--subtitle2">Sankalpit Bharat, Sashakt Bharat</h3>
+            </div>
+          </div>
+          <div id="BJP-content" class="demo-card__main-content"></div>
+        </div>
+      </td>
+
+      <td id="INC-benefits-list">
+        <div class="mdc-card demo-card demo-ui-control">
+          <div class="mdc-card__primary-action demo-card__primary-action" tabindex="0">
+            <div class="mdc-card__media mdc-card__media demo-card__media" style="background-image: url(&quot;https://pbs.twimg.com/profile_images/928339657376460800/MymoV5pX_400x400.jpg&quot;);"></div>
+            <div class="demo-card__primary">
+              <h2 class="demo-card__title mdc-typography mdc-typography--headline6">Indian National Congress</h2>
+              <h3 class="demo-card__subtitle mdc-typography mdc-typography--subtitle2">Hum Nibhayenge</h3>
+            </div>
+          </div>
+          <div id="INC-content" class="demo-card__main-content"></div>
+        </div>
+      </td>
+    </tr>
+    </table>
+    
+    <script>
+
+      const MDCTopAppBar = mdc.topAppBar.MDCTopAppBar;
+      const MDCDrawer = mdc.drawer.MDCDrawer;
+      const MDCTextField = mdc.textField.MDCTextField;
+      const MDCSelect = mdc.select.MDCSelect;
+      const MDCRipple = mdc.ripple.MDCRipple;
+      const MDCList = mdc.list.MDCList;
+      
+      const topAppBarElement = document.querySelector('.mdc-top-app-bar');
+      const topAppBar = new MDCTopAppBar(topAppBarElement);
+
+      const MDCDrawerElement = document.querySelector('.mdc-drawer');
+      const drawer = MDCDrawer.attachTo(MDCDrawerElement);
+
+      topAppBar.listen('MDCTopAppBar:nav', () => {
+        drawer.open = !drawer.open;
+      });
+
+      drawer.listen('MDCDrawer:closed', () => {
+        $.post('/', { age: ageSelect.value, sex: genderSelect.value },
+          function (data, textStatus, jqXHR) {
+            
+            Object.keys(data.benefits).forEach(function(party) {
+
+              var benefitList = '<div class="mdc-list-group">';
+                
+              Object.keys(data.benefits[party]).forEach(function(attrValue) {
+
+                benefitList += '<h3 class="mdc-list-group__subheader">'+$("." + attrValue).text().trim() + '</h3>';
+                
+                benefitList += '<ul class="mdc-list">';
+                for(i=0;i<data.benefits[party][attrValue].length;i++)
+                  benefitList += '<li class="mdc-list-item"><span class="mdc-list-item__text">'+data.benefits[party][attrValue][i]+'</span></li>';
+                benefitList += '</ul>';
+
+                benefitList += '<li role="separator" class="mdc-list-divider" style="list-style:none;"></li>';
+              });
+
+              benefitList += '</div>';
+
+              document.getElementById(party + "-content").innerHTML = benefitList;
+
+              new MDCList($('.mdc-list').last()[0]);
+              
+            });
+
+          },'json')
+      });
+
+      const ageSelect = new MDCSelect(document.querySelector('#age-select'));
+      const genderSelect = new MDCSelect(document.querySelector('#gender-select'));
+      const incomeGroupSelect = new MDCSelect(document.querySelector('#income-group-select'));
+
+      ageSelect.listen('MDCSelect:change', () => {
+        // alert(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
+      });
+
+      const selector = '.mdc-button, .mdc-icon-button, .demo-card__primary, .mdc-card__primary-action';
+      const ripples = [].map.call(document.querySelectorAll(selector), function(el) {
+        return new MDCRipple(el);
+      });
+
+    </script>
+
+  </body>
+</html>
